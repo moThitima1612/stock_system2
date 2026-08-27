@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ระบบสต๊อกคลังสินค้า">
+  <!-- พื้นหลังโค้งมน สีเดียวกับ --surface ของธีมมืด อ่านออกทั้งแท็บสว่างและมืด -->
+  <rect width="64" height="64" rx="14" fill="#171331"/>
+  <!-- กล่องสินค้า 3 ด้าน ใช้โทนทองชุดเดียวกับ --brand-3 / --brand-2 / --brand -->
+  <path d="M12 23.1 32 12l20 11.1L32 34.2Z" fill="#ffdf7d"/>
+  <path d="M12 23.1 32 34.2V52L12 40.9Z" fill="#e8bd3f"/>
+  <path d="M52 23.1 32 34.2V52l20-11.1Z" fill="#b98a12"/>
+</svg>
