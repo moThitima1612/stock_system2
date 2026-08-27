@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pp-stock",
+      "runtimeExecutable": "C:\\MAMP\\bin\\php\\php8.2.14\\php.exe",
+      "runtimeArgs": [
+        "-c", "C:\\MAMP\\conf\\php8.2.14\\php.ini",
+        "-S", "localhost:8010",
+        "-t", "C:\\MAMP\\htdocs"
+      ],
+      "port": 8010,
+      "url": "http://localhost:8010"
+    }
+  ]
+}
