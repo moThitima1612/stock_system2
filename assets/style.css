@@ -1,0 +1,471 @@
+/* ==========================================================
+   ระบบสต๊อกคลังสินค้า — ธีม "เรียบหรู" (ink + champagne gold)
+   ========================================================== */
+:root{
+  /* พื้นผิว — สว่าง สะอาด */
+  --bg:#f4f5fb;
+  --surface:#ffffff;
+  --surface-2:#f6f6fc;
+  --line:#e5e4f0;
+  --line-2:#efeff7;
+  --hair:rgba(196,150,42,.30);
+
+  /* ตัวอักษร */
+  --text:#191631;
+  --muted:#736f92;
+
+  /* สีหลัก — ทองสว่าง */
+  --brand:#b98a12;
+  --brand-2:#e8bd3f;
+  --brand-3:#ffdf7d;
+  --brand-ink:#231a05;
+  --brand-soft:#fdf3d6;
+
+  /* แถบข้าง — ม่วงหมึกหรู */
+  --side-bg:#1d1740;
+  --side-bg-2:#120e2b;
+  --side-text:#ddd8f2;
+  --side-muted:#918bbd;
+  --side-line:rgba(255,255,255,.09);
+  --side-on:rgba(232,189,63,.16);
+
+  /* สถานะ — สดใส */
+  --ok:#0e8a5f;      --ok-soft:#d8f7e9;
+  --warn:#c07806;    --warn-soft:#fdeecd;
+  --danger:#d92546;  --danger-soft:#ffe2e7;
+  --info:#1372c4;    --info-soft:#ddeeff;
+  --gold:#a8791a;    --gold-soft:#fbeec4;
+
+  --radius:12px;
+  --shadow:0 1px 2px rgba(31,24,72,.05), 0 14px 34px -20px rgba(31,24,72,.30);
+  --sidew:256px;
+
+  /* ---- à¸£à¸¹à¸à¸à¸·à¹à¸à¸«à¸¥à¸±à¸ (à¸à¸£à¸±à¸à¸à¸£à¸à¸à¸µà¹à¹à¸à¹à¹à¸¥à¸¢) ---- */
+  --photo:url("../imgs/558314573146663596_n.jpg");
+  /* à¸¡à¹à¸²à¸à¸à¸±à¸à¸£à¸¹à¸à¸à¸±à¹à¸à¹à¸à¸·à¹à¸­à¸«à¸² â alpha à¸¢à¸´à¹à¸à¸ªà¸¹à¸ à¸£à¸¹à¸à¸¢à¸´à¹à¸à¸à¸²à¸ */
+  --photo-veil:linear-gradient(rgba(244,245,251,.90),rgba(244,245,251,.93));
+  /* à¸¡à¹à¸²à¸à¸à¸±à¸à¸£à¸¹à¸à¹à¸à¹à¸à¸à¸à¹à¸²à¸ */
+  --side-veil:linear-gradient(168deg,rgba(29,23,64,.90) 0%,rgba(18,14,43,.95) 100%);
+  /* à¹à¸à¸à¸à¸à¹à¸à¸à¸à¸£à¸°à¸à¸à¸à¹à¸² */
+  --glass:rgba(255,255,255,.80);
+
+  --serif:"Cormorant Garamond","Georgia","Times New Roman",serif;
+  --sans:"Sarabun","Leelawadee UI","Segoe UI",Tahoma,system-ui,-apple-system,sans-serif;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0e0b1c;         --surface:#171331;      --surface-2:#1e1940;
+    --line:#2e2757;       --line-2:#251f4a;       --hair:rgba(232,189,63,.28);
+    --text:#f0edff;       --muted:#a09aca;
+    --brand:#e8bd3f;      --brand-2:#ffd868;      --brand-3:#fff0b8;
+    --brand-ink:#1a1405;  --brand-soft:#332a12;
+    --side-bg:#150f33;    --side-bg-2:#0c0820;
+    --side-text:#ded9f5;  --side-muted:#8d86bb;
+    --side-line:rgba(255,255,255,.08);            --side-on:rgba(232,189,63,.18);
+    --ok:#3ddb9c;         --ok-soft:#0d3a2a;
+    --warn:#ffc24d;       --warn-soft:#3d2c07;
+    --danger:#ff6b85;     --danger-soft:#42121f;
+    --info:#5cb3ff;       --info-soft:#0d2c4d;
+    --gold:#ffd868;       --gold-soft:#382d0f;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 20px 44px -24px rgba(0,0,0,.95);
+    --photo-veil:linear-gradient(rgba(14,11,28,.90),rgba(14,11,28,.94));
+    --side-veil:linear-gradient(168deg,rgba(21,15,51,.90) 0%,rgba(12,8,32,.95) 100%);
+    --glass:rgba(23,19,49,.80);
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--sans);
+  font-size:15px;line-height:1.6;color:var(--text);background:var(--bg);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--brand);text-decoration:none;transition:color .15s}
+a:hover{color:var(--brand-2)}
+h1,h2,h3{margin:0 0 .4em;line-height:1.3;font-weight:600;letter-spacing:.01em}
+h1{font-size:1.28rem} h2{font-size:1.04rem} h3{font-size:.95rem}
+code{font-family:"Consolas","SF Mono",monospace;font-size:.88em;letter-spacing:.02em}
+.muted{color:var(--muted)}
+.small{font-size:.84rem}
+.right{text-align:right} .center{text-align:center}
+.nowrap{white-space:nowrap}
+.pad-xl{padding:56px 24px}
+.ic{width:17px;height:17px;flex:0 0 17px}
+
+/* ---------- โครงหน้า ---------- */
+.shell{display:flex;min-height:100vh}
+.side{
+  width:var(--sidew);flex:0 0 var(--sidew);
+  background-image:var(--side-veil),var(--photo);
+  background-size:auto,cover;
+  background-position:center,center;
+  background-repeat:no-repeat,no-repeat;
+  background-color:var(--side-bg-2);
+  color:var(--side-text);
+  display:flex;flex-direction:column;
+  position:sticky;top:0;height:100vh;overflow-y:auto;z-index:30;
+}
+.side::after{content:"";position:absolute;top:0;right:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,var(--hair) 18%,var(--hair) 82%,transparent)}
+
+.brand{display:flex;gap:12px;align-items:center;padding:22px 20px 18px;border-bottom:1px solid var(--side-line)}
+.brand .logo{width:38px;height:38px;border-radius:10px;flex:0 0 38px;display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--brand-3),var(--brand-2) 55%,var(--brand));color:#241a03;
+  box-shadow:0 5px 18px -6px rgba(232,189,63,.85)}
+.brand .logo .ic{width:20px;height:20px}
+.brand b{display:block;font-size:.95rem;font-weight:600;letter-spacing:.015em;color:#f3efe6}
+.brand small{color:var(--side-muted);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+
+.side nav{padding:8px 12px;flex:1}
+.navgroup{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--side-muted);
+  padding:18px 10px 7px;font-weight:600}
+.navlink{position:relative;display:flex;align-items:center;gap:11px;padding:8px 11px;border-radius:7px;
+  color:var(--side-text);font-size:.885rem;margin-bottom:1px;transition:background .15s,color .15s}
+.navlink:hover{background:rgba(255,255,255,.045);color:#fff}
+.navlink.on{background:var(--side-on);color:var(--brand-2);font-weight:600}
+.navlink.on::before{content:"";position:absolute;left:-12px;top:7px;bottom:7px;width:2px;
+  background:var(--brand-2);border-radius:0 2px 2px 0}
+.navlink .ic{opacity:.72}
+.navlink.on .ic{opacity:1}
+
+.side-foot{padding:14px;border-top:1px solid var(--side-line);display:grid;gap:10px}
+.me{display:flex;gap:11px;align-items:center}
+.me .avatar{width:34px;height:34px;border-radius:50%;flex:0 0 34px;display:grid;place-items:center;
+  font-weight:600;font-size:.9rem;color:var(--brand-2);
+  background:rgba(200,162,74,.12);border:1px solid rgba(200,162,74,.3)}
+.me b{display:block;font-size:.85rem;font-weight:500;color:#eae6dc}
+.me small{color:var(--side-muted);font-size:.72rem}
+.side-foot .btn{background:transparent;border-color:var(--side-line);color:var(--side-muted)}
+.side-foot .btn:hover{background:rgba(255,255,255,.05);color:var(--side-text)}
+
+.main{flex:1;min-width:0;display:flex;flex-direction:column;
+  background-image:var(--photo-veil),var(--photo);
+  background-size:auto,cover;
+  background-position:center,center;
+  background-repeat:no-repeat,no-repeat;
+  background-attachment:fixed,fixed;
+  background-color:var(--bg)}
+
+.topbar{display:flex;align-items:center;gap:14px;padding:18px 28px;background:var(--glass);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.topbar h1{margin:0;font-weight:600}
+.spacer{flex:1}
+.today{color:var(--muted);font-size:.8rem;letter-spacing:.06em}
+.content{padding:26px 28px;flex:1;max-width:1460px;width:100%}
+.foot{padding:20px 28px;color:var(--muted);font-size:.76rem;letter-spacing:.04em;border-top:1px solid var(--line-2)}
+
+.burger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px}
+.burger span{display:block;width:19px;height:1.5px;background:var(--text);border-radius:2px}
+.scrim{display:none}
+#navtoggle:checked ~ .scrim{display:block;position:fixed;inset:0;background:rgba(12,10,6,.5);z-index:25}
+
+@media (max-width:920px){
+  .side{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .22s ease}
+  #navtoggle:checked ~ .shell .side{transform:none}
+  .burger{display:flex}
+  .content{padding:16px}
+  .topbar{padding:13px 16px}
+}
+
+/* ---------- การ์ด ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden}
+.card > .card-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:16px 20px;border-bottom:1px solid var(--line-2)}
+.card > .card-head h2{margin:0;font-weight:600}
+.card > .card-body{padding:20px}
+.card.pad-xl{padding:56px 24px}
+
+/* ---------- KPI ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;margin-bottom:20px}
+.kpi{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 18px 17px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;overflow:hidden}
+.kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brand-2);opacity:.75}
+.kpi.ok::before{background:var(--ok)} .kpi.warn::before{background:var(--warn)} .kpi.danger::before{background:var(--danger)}
+.kpi .kico{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;flex:0 0 38px;
+  background:var(--brand-soft);color:var(--brand);border:1px solid var(--hair)}
+.kpi .kico .ic{width:19px;height:19px}
+.kpi.ok  .kico{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.kpi.warn .kico{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.kpi.danger .kico{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.kpi::before{background:linear-gradient(180deg,var(--brand-2),var(--brand))}
+.kpi .kval{display:block;font-family:var(--serif);font-size:1.9rem;font-weight:600;line-height:1.1;
+  letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.kpi .klab{display:block;color:var(--muted);font-size:.79rem;margin-top:3px;letter-spacing:.02em}
+
+/* ---------- ตาราง ---------- */
+.tablewrap{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse;font-size:.885rem}
+table.tbl th,table.tbl td{padding:11px 14px;border-bottom:1px solid var(--line-2);text-align:left;vertical-align:middle}
+table.tbl thead th{background:var(--surface-2);color:var(--muted);font-weight:600;font-size:.7rem;
+  text-transform:uppercase;letter-spacing:.11em;white-space:nowrap;
+  border-bottom:1px solid var(--line)}
+table.tbl tbody tr{transition:background .12s}
+table.tbl tbody tr:hover{background:var(--surface-2)}
+table.tbl tbody tr:last-child td{border-bottom:none}
+table.tbl td.num,table.tbl th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.tbl tfoot td{padding:12px 14px;font-weight:600;background:var(--surface-2);
+  border-top:1px solid var(--brand);border-bottom:none;font-variant-numeric:tabular-nums}
+.empty{padding:52px 20px;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* ---------- ป้ายสถานะ ---------- */
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.73rem;font-weight:600;
+  white-space:nowrap;letter-spacing:.02em;border:1px solid transparent}
+.badge.ok{background:var(--ok-soft);color:var(--ok)}
+.badge.warn{background:var(--warn-soft);color:var(--warn)}
+.badge.danger{background:var(--danger-soft);color:var(--danger)}
+.badge.info{background:var(--info-soft);color:var(--info)}
+.badge.gold{background:var(--gold-soft);color:var(--gold);border-color:var(--hair)}
+.badge.muted{background:var(--surface-2);color:var(--muted);border-color:var(--line)}
+
+/* ---------- ปุ่ม ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:8px 16px;border-radius:7px;border:1px solid var(--line);background:var(--surface);
+  color:var(--text);font:inherit;font-size:.86rem;font-weight:500;cursor:pointer;white-space:nowrap;
+  transition:background .15s,border-color .15s,color .15s}
+.btn:hover{background:var(--surface-2);border-color:var(--muted);color:var(--text)}
+.btn.primary{background:linear-gradient(165deg,var(--brand-3),var(--brand-2) 45%,var(--brand));
+  border-color:var(--brand);color:var(--brand-ink);font-weight:600;
+  box-shadow:0 1px 0 rgba(255,255,255,.45) inset, 0 6px 16px -8px rgba(185,138,18,.75)}
+.btn.primary:hover{filter:brightness(1.06) saturate(1.08);color:var(--brand-ink)}
+.btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn.danger:hover{filter:brightness(1.1);color:#fff}
+.btn.ghost{background:transparent}
+.btn.sm{padding:5px 11px;font-size:.79rem;border-radius:6px}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+
+/* ---------- ฟอร์ม ---------- */
+label{display:block;font-size:.79rem;font-weight:600;margin-bottom:14px;color:var(--muted);
+  letter-spacing:.04em}
+input,select,textarea{
+  width:100%;padding:9px 12px;margin-top:6px;border:1px solid var(--line);border-radius:7px;
+  background:var(--surface);color:var(--text);font:inherit;font-size:.9rem;font-weight:400;
+  transition:border-color .15s,box-shadow .15s}
+input:hover,select:hover,textarea:hover{border-color:var(--muted)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(200,162,74,.18)}
+input[readonly]{background:var(--surface-2);color:var(--muted)}
+textarea{resize:vertical;min-height:72px}
+.grid{display:grid;gap:0 16px}
+.grid.c2{grid-template-columns:repeat(auto-fit,minmax(245px,1fr))}
+.grid.c3{grid-template-columns:repeat(auto-fit,minmax(205px,1fr))}
+.grid.c4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.inline-form{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.inline-form label{margin-bottom:0}
+.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;padding:16px 20px;
+  border-bottom:1px solid var(--line-2);background:var(--surface-2)}
+.filters label{margin-bottom:0;min-width:150px}
+.filters .grow{flex:1;min-width:220px}
+
+/* ---------- แจ้งเตือน ---------- */
+.alert{padding:12px 16px;border-radius:8px;margin-bottom:18px;font-size:.88rem;
+  border:1px solid transparent;border-left-width:3px}
+.alert.success{background:var(--ok-soft);color:var(--ok);border-left-color:currentColor}
+.alert.danger{background:var(--danger-soft);color:var(--danger);border-left-color:currentColor}
+.alert.warn{background:var(--warn-soft);color:var(--warn);border-left-color:currentColor}
+.alert.info{background:var(--info-soft);color:var(--info);border-left-color:currentColor}
+.alert a{color:inherit;font-weight:600;text-decoration:underline}
+
+/* ---------- แถบเลขหน้า ---------- */
+.pager{display:flex;gap:6px;padding:16px 20px;flex-wrap:wrap;align-items:center;justify-content:center;
+  border-top:1px solid var(--line-2)}
+.pager a{padding:6px 12px;border:1px solid var(--line);border-radius:6px;font-size:.83rem;color:var(--text)}
+.pager a:hover{background:var(--surface-2);border-color:var(--muted)}
+.pager a.on{background:var(--brand);border-color:var(--brand);color:var(--brand-ink);font-weight:600}
+.pager .gap{color:var(--muted);padding:0 2px}
+
+/* ---------- ตารางกรอกรายการสินค้า ---------- */
+table.items{width:100%;border-collapse:collapse;font-size:.88rem}
+table.items th{background:var(--surface-2);color:var(--muted);font-size:.69rem;text-transform:uppercase;
+  letter-spacing:.11em;padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+table.items td{padding:7px 10px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+table.items input,table.items select{margin-top:0}
+table.items td.num input{text-align:right}
+table.items .p-amt{font-variant-numeric:tabular-nums;color:var(--muted)}
+table.items .rm{border:none;background:transparent;color:var(--danger);cursor:pointer;
+  font-size:1.2rem;line-height:1;padding:4px 8px;width:auto;opacity:.5;transition:opacity .15s}
+table.items .rm:hover{opacity:1}
+.stockhint{font-size:.75rem;color:var(--muted);white-space:nowrap;letter-spacing:.02em}
+.stockhint.low{color:var(--danger);font-weight:600}
+.totalbar{display:flex;gap:34px;justify-content:flex-end;padding:16px 20px;
+  border-top:1px solid var(--brand);background:var(--surface-2);flex-wrap:wrap}
+.totalbar div{text-align:right}
+.totalbar span{display:block;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em}
+.totalbar b{font-family:var(--serif);font-size:1.35rem;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ---------- หน้าเข้าสู่ระบบ ---------- */
+body.loginpage{display:grid;place-items:center;min-height:100vh;padding:20px;
+  background:
+    radial-gradient(900px 480px at 50% -10%, rgba(232,189,63,.28), transparent 60%),
+    radial-gradient(700px 500px at 88% 105%, rgba(120,80,220,.30), transparent 62%),
+    linear-gradient(165deg,#241c52,#120e2b 65%)}
+.loginbox{width:100%;max-width:400px;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:34px 30px;box-shadow:0 30px 70px -30px rgba(0,0,0,.7)}
+.loginhead{text-align:center;margin-bottom:24px}
+.loginhead svg{width:42px;height:42px;color:var(--brand)}
+.loginhead h1{margin:12px 0 5px;font-size:1.22rem;font-weight:600;letter-spacing:.01em}
+.loginhead p{margin:0;color:var(--muted);font-size:.83rem}
+.hint{text-align:center;color:var(--muted);font-size:.8rem;margin:18px 0 0}
+body.loginpage .hint{color:rgba(232,226,214,.5)}
+body.loginpage .hint a{color:var(--brand-2)}
+
+/* ---------- แถบสัดส่วน ---------- */
+.bar{height:6px;border-radius:99px;background:var(--line-2);overflow:hidden;min-width:70px}
+.bar > i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+.bar > i.warn{background:var(--warn)}
+.bar > i.danger{background:var(--danger)}
+
+/* ---------- พิมพ์ ---------- */
+@media print{
+  .side,.topbar,.foot,.btnrow,.filters,.pager,.noprint{display:none !important}
+  .shell{display:block}
+  .main{background:none !important}
+  .content{padding:0;max-width:none}
+  .card{border:none;box-shadow:none;margin:0 0 14px}
+  body{background:#fff;font-size:12px;color:#000}
+  table.tbl thead th{background:none;border-bottom:1px solid #000}
+}
+
+/* ==========================================================
+   แจ้งเตือนแบบ Toast + กล่องยืนยัน — ธีมหมึก + ทอง
+   ========================================================== */
+.flashseed{display:none}
+
+/* วางกรอบเต็มความกว้างแล้วชิดขวา — เลี่ยง 100vw ที่นับแถบเลื่อนรวมไปด้วย */
+#pp-toasts{position:fixed;top:18px;right:18px;left:18px;z-index:9000;display:flex;
+  flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
+#pp-toasts .toast{width:min(384px,100%)}
+@media (max-width:600px){
+  #pp-toasts{top:auto;bottom:14px;left:14px;right:14px}
+  #pp-toasts .toast{width:100%}
+}
+
+.toast{pointer-events:auto;position:relative;display:flex;gap:13px;align-items:flex-start;
+  padding:14px 15px 15px;border-radius:13px;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line);
+  box-shadow:0 2px 5px rgba(31,24,72,.07), 0 22px 48px -20px rgba(31,24,72,.45);
+  transform:translateX(24px) scale(.97);opacity:0;
+  transition:transform .34s cubic-bezier(.22,1,.36,1), opacity .28s ease}
+.toast.in{transform:none;opacity:1}
+.toast.out{transform:translateX(24px) scale(.97);opacity:0}
+@media (max-width:600px){
+  .toast{transform:translateY(20px) scale(.98)}
+  .toast.out{transform:translateY(20px) scale(.98)}
+}
+/* เส้นทองบาง ๆ ด้านบน — ลายเซ็นของธีม */
+.toast::before{content:"";position:absolute;inset:0 0 auto;height:1px;
+  background:linear-gradient(90deg,transparent,var(--brand-2),transparent);opacity:.85}
+
+.toast .tico{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:var(--surface-2);color:var(--muted)}
+.toast .tico svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.toast .tbody{flex:1;min-width:0}
+.toast .ttitle{font-weight:600;font-size:.92rem;letter-spacing:.01em;line-height:1.45}
+.toast .tmsg{font-size:.85rem;color:var(--muted);line-height:1.55;margin-top:1px;
+  overflow-wrap:anywhere}
+.toast .tmsg a{color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.toast .tmsg b{color:var(--text)}
+.toast .tclose{flex:none;border:none;background:transparent;color:var(--muted);cursor:pointer;
+  font-size:1.15rem;line-height:1;padding:2px 4px;width:auto;border-radius:6px;opacity:.55}
+.toast .tclose:hover{opacity:1;background:var(--surface-2)}
+.toast .tbar{position:absolute;left:0;bottom:0;height:2px;width:100%;transform-origin:left;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+
+.toast.success .tico{background:var(--ok-soft);color:var(--ok)}
+.toast.success .tbar{background:var(--ok)}
+.toast.danger  .tico{background:var(--danger-soft);color:var(--danger)}
+.toast.danger  .tbar{background:var(--danger)}
+.toast.warn    .tico{background:var(--warn-soft);color:var(--warn)}
+.toast.warn    .tbar{background:var(--warn)}
+.toast.info    .tico{background:var(--info-soft);color:var(--info)}
+.toast.info    .tbar{background:var(--info)}
+
+/* ---------- กล่องยืนยัน ---------- */
+#pp-modal{position:fixed;inset:0;z-index:9100;display:grid;place-items:center;padding:20px;
+  background:rgba(18,14,43,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  opacity:0;transition:opacity .2s ease}
+#pp-modal.in{opacity:1}
+#pp-modal .box{width:min(430px,100%);background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;padding:26px 26px 20px;text-align:center;
+  box-shadow:0 30px 70px -26px rgba(0,0,0,.6);
+  transform:translateY(10px) scale(.97);transition:transform .26s cubic-bezier(.22,1,.36,1)}
+#pp-modal.in .box{transform:none}
+#pp-modal .mico{width:52px;height:52px;margin:0 auto 14px;border-radius:15px;display:grid;
+  place-items:center;background:var(--danger-soft);color:var(--danger)}
+#pp-modal .mico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}
+#pp-modal.ask .mico{background:var(--brand-soft);color:var(--brand)}
+#pp-modal h3{margin:0 0 6px;font-size:1.1rem;font-weight:600;letter-spacing:.01em}
+#pp-modal p{margin:0 0 20px;color:var(--muted);font-size:.9rem;line-height:1.6;
+  overflow-wrap:anywhere}
+#pp-modal .mbtns{display:flex;gap:10px}
+#pp-modal .mbtns .btn{flex:1;justify-content:center}
+#pp-modal .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+#pp-modal .btn.danger:hover{filter:brightness(1.06)}
+
+@media (prefers-reduced-motion:reduce){
+  .toast,#pp-modal,#pp-modal .box{transition:none}
+  .toast{transform:none}
+  .toast .tbar{display:none}
+}
+@media print{#pp-toasts,#pp-modal{display:none !important}}
+
+/* ==========================================================
+   กระดิ่งแจ้งเตือนใบสั่งซื้อ (PO) จากอีเมล
+   ========================================================== */
+.bell{position:relative}
+.bellbtn{position:relative;width:38px;height:38px;padding:0;display:grid;place-items:center;
+  border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--muted);
+  cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+.bellbtn:hover{color:var(--brand);border-color:var(--brand)}
+.bellbtn .ic{width:19px;height:19px}
+.bell.on .bellbtn{color:var(--brand);border-color:var(--brand);background:var(--brand-soft)}
+.bellbtn .dot{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;
+  border-radius:99px;background:var(--danger);color:#fff;font-size:.68rem;font-weight:700;
+  display:grid;place-items:center;border:2px solid var(--surface);letter-spacing:0}
+.bellbtn .dot[hidden]{display:none}
+/* เต้นเบา ๆ ตอนมีใบใหม่เข้ามา */
+.bellbtn .dot.pulse{animation:belldot 1.1s ease-out 3}
+@keyframes belldot{0%,100%{transform:scale(1)}35%{transform:scale(1.28)}}
+
+.bellpanel{position:absolute;top:calc(100% + 10px);right:0;width:min(400px,calc(100vw - 32px));
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;z-index:60;
+  box-shadow:0 2px 6px rgba(31,24,72,.06), 0 26px 56px -22px rgba(31,24,72,.5);overflow:hidden}
+.bellpanel[hidden]{display:none}
+.bellhead{display:flex;align-items:center;gap:8px;padding:12px 14px;
+  border-bottom:1px solid var(--line-2);background:var(--surface-2)}
+.bellhead b{font-size:.92rem}
+.belllist{max-height:min(430px,60vh);overflow-y:auto}
+.bellempty{padding:26px 20px;text-align:center;color:var(--muted);font-size:.86rem;line-height:1.65}
+.bellsetup{padding:16px;font-size:.84rem;color:var(--muted);line-height:1.65}
+.bellsetup b{color:var(--text)}
+.bellsetup code{font-size:.8rem}
+
+.poitem{display:block;padding:12px 14px;border-bottom:1px solid var(--line-2);
+  text-decoration:none;color:inherit;position:relative;transition:background .13s}
+.poitem:last-child{border-bottom:none}
+.poitem:hover{background:var(--surface-2)}
+.poitem.unread{background:linear-gradient(90deg,var(--brand-soft),transparent 62%)}
+.poitem.unread::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--brand)}
+.poitem .potop{display:flex;gap:8px;align-items:baseline}
+.poitem .posub{font-weight:600;font-size:.89rem;line-height:1.45;flex:1;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.poitem .powhen{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.poitem .pometa{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px;
+  font-size:.77rem;color:var(--muted)}
+.poitem .poex{margin-top:5px;font-size:.78rem;color:var(--muted);line-height:1.55;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.poitem .poact{display:flex;gap:8px;margin-top:9px}
+.poitem .poact .btn{padding:4px 10px;font-size:.76rem}
+
+@media (max-width:520px){
+  .bellpanel{position:fixed;top:64px;left:12px;right:12px;width:auto}
+}
+@media print{.bell{display:none !important}}
